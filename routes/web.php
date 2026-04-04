@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/products', function () {
-    return view('products');
+Route::get('/review', function () {
+    return view('review');
 });
