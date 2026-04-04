@@ -1,39 +1,19 @@
+// File: app/Http/Controllers/ProductController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function update(Request $request, $id)
+    public function getData()
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'quantity' => 'required|numeric',
-        ]);
-
-        $product = Product::find($id);
-
-        if (!$product) {
-            return response()->json(['message' => 'Product not found'], 404);
-        }
-
-        $product->update($request->all());
-
-        return response()->json($product);
-    }
-
-    public function delete($id)
-    {
-        $product = Product::find($id);
-
-        if (!$product) {
-            return response()->json(['message' => 'Product not found'], 404);
-        }
-
-        $product->delete();
-
-        return response()->json(['message' => 'Product deleted successfully']);
+        $products = Product::all();
+        return response()->json([
+            'message' => 'Products retrieved successfully',
+            'data' => $products
+        ], 200);
     }
 }
