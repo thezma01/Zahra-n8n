@@ -1,0 +1,21 @@
+/* App CSS */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
