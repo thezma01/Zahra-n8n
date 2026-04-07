@@ -1,72 +1,77 @@
+<?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreEmployeeRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
+use Illuminate\Http\JsonResponse;
 
 class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $employees = Employee::all();
-        return response()->json($employees);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Employees retrieved successfully',
+            'data' => $employees
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request): JsonResponse
     {
-        $employee = new Employee();
-        $employee->Emp_ID = $request->input('Emp_ID');
-        $employee->name = $request->input('name');
-        $employee->email = $request->input('email');
-        $employee->timestamp = $request->input('timestamp');
-        $employee->save();
-        return response()->json($employee, 201);
+        $employee = Employee::create($request->validated());
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Employee created successfully',
+            'data' => $employee
+        ], 201); // 201 Created
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Employee $employee): JsonResponse
+    {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Employee retrieved successfully',
+            'data' => $employee
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEmployeeRequest $request, Employee $employee): JsonResponse
     {
-        $employee = Employee::find($id);
-        if (!$employee) {
-            return response()->json(['message' => 'Employee not found'], 404);
-        }
-        $employee->Emp_ID = $request->input('Emp_ID');
-        $employee->name = $request->input('name');
-        $employee->email = $request->input('email');
-        $employee->timestamp = $request->input('timestamp');
-        $employee->save();
-        return response()->json($employee);
+        $employee->update($request->validated());
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Employee updated successfully',
+            'data' => $employee
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee): JsonResponse
     {
-        $employee = Employee::find($id);
-        if (!$employee) {
-            return response()->json(['message' => 'Employee not found'], 404);
-        }
         $employee->delete();
-        return response()->json(['message' => 'Employee deleted successfully']);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Employee deleted successfully'
+        ], 204); // 204 No Content
     }
 }
