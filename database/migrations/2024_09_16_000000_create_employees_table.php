@@ -4,28 +4,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateEmployeesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
-            $table->string('Emp_ID')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('timestamp')->default(now());
+            $table->id('Emp_ID');
+            $table->string('name', 255);
+            $table->string('email', 255)->unique();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('employees');
