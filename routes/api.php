@@ -1,1 +1,0 @@
-Route::apiResource('shipments', \App\Http\Controllers\ShipmentController::class);
