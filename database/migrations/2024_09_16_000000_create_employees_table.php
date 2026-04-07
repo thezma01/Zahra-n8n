@@ -7,9 +7,11 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id('Emp_ID');
-            $table->string('name', 255);
-            $table->string('email', 255)->unique();
+            $table->id();
+            $table->string('Emp_ID')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('timestamp')->default(\Illuminate\Support\Facades\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
         });
     }
