@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('summary');
-            $table->timestamp('timestamp')->default(\Illuminate\Support\Facades\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('timestamp');
             $table->timestamps();
         });
     }
