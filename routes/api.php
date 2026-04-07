@@ -1,0 +1,1 @@
+Route::apiResource('fruits', FruitController::class);
