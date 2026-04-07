@@ -1,1 +1,1 @@
-Route::apiResource('fruits', FruitController::class);
+Route::apiResource('vegetables', VegetableController::class);
