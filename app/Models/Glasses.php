@@ -12,8 +12,5 @@ class Glasses extends Model
         'name',
         'length',
         'timestamp',
-        'order_id',
-        'customer_id',
-        'date',
     ];
 }
