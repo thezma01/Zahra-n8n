@@ -1,3 +1,3 @@
 
 
-Route::post('/services', [ServiceController::class, 'store']);
+Route::apiResource('services', ServiceController::class);
