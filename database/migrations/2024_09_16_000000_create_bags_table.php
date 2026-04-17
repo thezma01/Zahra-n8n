@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateBagsTable extends Migration
 {
-    public function up(): void
+    public function up()
     {
         Schema::create('bags', function (Blueprint $table) {
             $table->id();
@@ -16,7 +16,7 @@ class CreateBagsTable extends Migration
         });
     }
 
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('bags');
     }
