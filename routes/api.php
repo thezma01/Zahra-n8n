@@ -1,1 +1,0 @@
-Route::apiResource('shoes', ShoeController::class);
