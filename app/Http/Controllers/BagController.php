@@ -1,20 +1,14 @@
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BagRequest;
 use App\Models\Bag;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class BagController extends Controller
 {
-    public function store(Request $request)
+    public function store(BagRequest $request): JsonResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'size' => 'required',
-            'price' => 'required|numeric',
-            'color' => 'required',
-        ]);
-
-        $bag = Bag::create($request->all());
+        $bag = Bag::create($request->validated());
 
         return response()->json([
             'message' => 'Bag created successfully',
@@ -22,7 +16,7 @@ class BagController extends Controller
         ], 201);
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         $bags = Bag::all();
 
@@ -32,40 +26,17 @@ class BagController extends Controller
         ], 200);
     }
 
-    public function show($id)
+    public function show(Bag $bag): JsonResponse
     {
-        $bag = Bag::find($id);
-
-        if (!$bag) {
-            return response()->json([
-                'message' => 'Bag not found',
-            ], 404);
-        }
-
         return response()->json([
             'message' => 'Bag retrieved successfully',
             'data' => $bag,
         ], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(BagRequest $request, Bag $bag): JsonResponse
     {
-        $bag = Bag::find($id);
-
-        if (!$bag) {
-            return response()->json([
-                'message' => 'Bag not found',
-            ], 404);
-        }
-
-        $request->validate([
-            'name' => 'sometimes|required',
-            'size' => 'sometimes|required',
-            'price' => 'sometimes|required|numeric',
-            'color' => 'sometimes|required',
-        ]);
-
-        $bag->update($request->all());
+        $bag->update($request->validated());
 
         return response()->json([
             'message' => 'Bag updated successfully',
@@ -73,16 +44,8 @@ class BagController extends Controller
         ], 200);
     }
 
-    public function destroy($id)
+    public function destroy(Bag $bag): JsonResponse
     {
-        $bag = Bag::find($id);
-
-        if (!$bag) {
-            return response()->json([
-                'message' => 'Bag not found',
-            ], 404);
-        }
-
         $bag->delete();
 
         return response()->json([
