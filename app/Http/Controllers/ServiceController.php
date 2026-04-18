@@ -1,5 +1,7 @@
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreServiceRequest;
+use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -8,19 +10,12 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::all();
-        return response()->json($services);
+        return response()->json(['services' => $services], 200);
     }
 
-    public function store(Request $request)
+    public function store(StoreServiceRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'price' => 'required|numeric',
-            'description' => 'required',
-        ]);
-
-        $service = Service::create($request->all());
+        $service = Service::create($request->validated());
         return response()->json(['message' => 'Service created successfully', 'service' => $service], 201);
     }
 
@@ -30,25 +25,17 @@ class ServiceController extends Controller
         if (!$service) {
             return response()->json(['message' => 'Service not found'], 404);
         }
-        return response()->json($service);
+        return response()->json(['service' => $service], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateServiceRequest $request, $id)
     {
         $service = Service::find($id);
         if (!$service) {
             return response()->json(['message' => 'Service not found'], 404);
         }
-
-        $request->validate([
-            'name' => 'sometimes|required',
-            'type' => 'sometimes|required',
-            'price' => 'sometimes|required|numeric',
-            'description' => 'sometimes|required',
-        ]);
-
-        $service->update($request->all());
-        return response()->json(['message' => 'Service updated successfully', 'service' => $service]);
+        $service->update($request->validated());
+        return response()->json(['message' => 'Service updated successfully', 'service' => $service], 200);
     }
 
     public function destroy($id)
@@ -58,6 +45,6 @@ class ServiceController extends Controller
             return response()->json(['message' => 'Service not found'], 404);
         }
         $service->delete();
-        return response()->json(['message' => 'Service deleted successfully']);
+        return response()->json(['message' => 'Service deleted successfully'], 200);
     }
 }
