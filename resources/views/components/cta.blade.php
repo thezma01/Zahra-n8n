@@ -1,21 +1,40 @@
-<section class="cta" id="contact" aria-label="Call to action">
-    <div class="cta__overlay"></div>
-    <div class="container">
-        <div class="cta__inner" data-animate="fade-up">
-            <span class="section-eyebrow cta__eyebrow">Ready to Start?</span>
-            <h2 class="cta__title">Let's Build Something<br><span class="cta__title-accent">Amazing Together</span></h2>
-            <p class="cta__text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.
+<section class="cta" id="contact" aria-label="Call to Action">
+    <div class="cta__bg-pattern" aria-hidden="true"></div>
+
+    <div class="cta__container">
+        <div class="cta__content" data-aos="fade-up">
+
+            <span class="cta__tag">
+                <i class="fas fa-rocket"></i>
+                Ready to Start?
+            </span>
+
+            <h2 class="cta__title">
+                Let's Build Something<br>
+                <em>Amazing Together</em>
+            </h2>
+
+            <p class="cta__subtitle">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
             </p>
+
             <div class="cta__actions">
-                <a href="{{ route('contact') }}" class="btn btn--light">
-                    Contact Us <i class="fas fa-paper-plane"></i>
+                <a href="mailto:hello@lumiere.co" class="btn btn--white">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Us</span>
                 </a>
-                <a href="#services" class="btn btn--ghost">
-                    Our Services <i class="fas fa-arrow-right"></i>
+                <a href="tel:+11234567890" class="btn btn--outline-white">
+                    <i class="fas fa-phone"></i>
+                    <span>+1 (123) 456-7890</span>
                 </a>
             </div>
+
         </div>
+
+        {{-- Decorative Circles --}}
+        <div class="cta__deco cta__deco--1" aria-hidden="true"></div>
+        <div class="cta__deco cta__deco--2" aria-hidden="true"></div>
+        <div class="cta__deco cta__deco--3" aria-hidden="true"></div>
     </div>
 </section>
