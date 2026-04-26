@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StickyNoteController;
 use App\Http\Controllers\HomeDecorController;
+use App\Http\Controllers\API\ClothController;
 
 Route::post('/notes', [StickyNoteController::class, 'store']);
 Route::get('/notes', [StickyNoteController::class, 'index']);
@@ -59,3 +60,10 @@ Route::get('/bags', [BagController::class, 'index']);
 Route::get('/bags/{id}', [BagController::class, 'show']);
 Route::put('/bags/{id}', [BagController::class, 'update']);
 Route::delete('/bags/{id}', [BagController::class, 'destroy']);
+
+/*
+|--------------------------------------------------------------------------
+| Cloth API Routes
+|--------------------------------------------------------------------------
+*/
+Route::apiResource('cloths', ClothController::class);
