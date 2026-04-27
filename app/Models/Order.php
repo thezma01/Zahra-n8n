@@ -1,6 +1,10 @@
+<?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
@@ -12,13 +16,33 @@ class Order extends Model
         'date',
     ];
 
-    public function product()
+    /**
+     * Get the product associated with the order.
+     *
+     * @return BelongsTo
+     */
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function customer()
+    /**
+     * Get the customer associated with the order.
+     *
+     * @return BelongsTo
+     */
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    /**
+     * Get the shipments for the order.
+     *
+     * @return HasMany
+     */
+    public function shipments(): HasMany
+    {
+        return $this->hasMany(Shipment::class);
     }
 }
