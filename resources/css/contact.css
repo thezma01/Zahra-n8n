@@ -1,0 +1,42 @@
+/* Contact Page Specific Styles */
+:root {
+    --primary: #27374D;
+    --secondary: #526D82;
+    --accent: #9DB2BF;
+    --background: #DDE6ED;
+}
+
+/* Additional styles can be added here for future enhancements */
+.contact-animations {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(39, 55, 77, 0.25);
+}
+
+/* Custom scrollbar for textarea */
+.form-control::-webkit-scrollbar {
+    width: 6px;
+}
+
+.form-control::-webkit-scrollbar-track {
+    background: rgba(39, 55, 77, 0.1);
+    border-radius: 10px;
+}
+
+.form-control::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+.form-control::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
