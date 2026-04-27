@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\HomeDecorController;
 use App\Http\Controllers\API\ClothController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\EmployeeController;
 // use App\Http\Controllers\BagController;
 
 // Route::post('/notes', [StickyNoteController::class, 'store']);
@@ -22,7 +23,7 @@ use App\Http\Controllers\Api\CustomerController;
 |
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
-| be assigned the "api" middleware group. Make sure to add proper
+| be assigned to the "api" middleware group. Make sure to add proper
 | middleware for authentication as needed.
 |
 */
@@ -77,3 +78,10 @@ Route::apiResource('cloths', ClothController::class);
 */
 Route::apiResource('customers', CustomerController::class);
 Route::get('customers-shipment-statuses', [CustomerController::class, 'getShipmentStatuses']);
+
+/*
+|--------------------------------------------------------------------------
+| Employee API Routes
+|--------------------------------------------------------------------------
+*/
+Route::apiResource('employees', EmployeeController::class);
