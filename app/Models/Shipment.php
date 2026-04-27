@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Customer extends Model
+class Shipment extends Model
 {
     use HasFactory;
 
@@ -17,7 +16,8 @@ class Customer extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'customer_name',
+        'order_id',
+        'customer_id',
         'shipment_status',
         'delivery_date',
     ];
@@ -40,9 +40,9 @@ class Customer extends Model
      */
     public const SHIPMENT_STATUSES = [
         'Pending',
+        'Shipped',
         'In Transit',
         'Delivered',
-        'Cancelled',
     ];
 
     /**
@@ -67,39 +67,39 @@ class Customer extends Model
     }
 
     /**
-     * Get the shipments for the customer.
+     * Get the order associated with the shipment.
      *
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function shipments(): HasMany
+    public function order(): BelongsTo
     {
-        return $this->hasMany(Shipment::class);
+        return $this->belongsTo(Order::class);
     }
 
     /**
-     * Get the orders for the customer.
+     * Get the customer associated with the shipment.
      *
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function orders(): HasMany
+    public function customer(): BelongsTo
     {
-        return $this->hasMany(Order::class);
+        return $this->belongsTo(Customer::class);
     }
 
     /**
-     * Scope a query to only include customers with specific shipment status.
+     * Scope a query to only include shipments with specific status.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $status
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeByShipmentStatus($query, string $status)
+    public function scopeByStatus($query, string $status)
     {
         return $query->where('shipment_status', $status);
     }
 
     /**
-     * Scope a query to only include customers with delivery date in range.
+     * Scope a query to only include shipments with delivery date in range.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $startDate
@@ -109,5 +109,29 @@ class Customer extends Model
     public function scopeByDeliveryDateRange($query, string $startDate, string $endDate)
     {
         return $query->whereBetween('delivery_date', [$startDate, $endDate]);
+    }
+
+    /**
+     * Scope a query to only include shipments for a specific customer.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $customerId
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByCustomer($query, int $customerId)
+    {
+        return $query->where('customer_id', $customerId);
+    }
+
+    /**
+     * Scope a query to only include shipments for a specific order.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $orderId
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByOrder($query, int $orderId)
+    {
+        return $query->where('order_id', $orderId);
     }
 }
