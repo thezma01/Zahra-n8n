@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Resources\CustomerResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -53,7 +54,7 @@ class CustomerController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Customers retrieved successfully',
-                'data' => $customers->items(),
+                'data' => CustomerResource::collection($customers->items()),
                 'pagination' => [
                     'current_page' => $customers->currentPage(),
                     'last_page' => $customers->lastPage(),
@@ -87,7 +88,7 @@ class CustomerController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Customer created successfully',
-                'data' => $customer
+                'data' => new CustomerResource($customer)
             ], 201);
 
         } catch (Exception $e) {
@@ -113,7 +114,7 @@ class CustomerController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Customer retrieved successfully',
-                'data' => $customer
+                'data' => new CustomerResource($customer)
             ], 200);
 
         } catch (ModelNotFoundException $e) {
@@ -148,7 +149,7 @@ class CustomerController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Customer updated successfully',
-                'data' => $customer->fresh()
+                'data' => new CustomerResource($customer->fresh())
             ], 200);
 
         } catch (ModelNotFoundException $e) {
