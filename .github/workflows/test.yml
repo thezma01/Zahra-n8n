@@ -30,7 +30,7 @@ jobs:
           extensions: pdo_mysql
 
       - name: Install Dependencies
-        run: composer install
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Copy .env
         run: cp .env.example .env
@@ -46,6 +46,9 @@ jobs:
 
       - name: Generate App Key
         run: php artisan key:generate
+
+      - name: Clear Config Cache
+        run: php artisan config:clear
 
       - name: Run Migrations
         run: php artisan migrate

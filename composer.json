@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
-        "Facade/Ignition": "^2.0",
+        "facade/ignition": "^2.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
@@ -58,9 +58,6 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
-        "allow-plugins": {
-            "composer-plugin-api": true,
-            "laravel/installer": true
-        }
+        "allow-plugins": true
     }
 }
