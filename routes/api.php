@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\StickyNoteController;
 // use App\Http\Controllers\HomeDecorController;
 use App\Http\Controllers\API\ClothController;
+use App\Http\Controllers\Api\CustomerController;
 // use App\Http\Controllers\BagController;
 
 // Route::post('/notes', [StickyNoteController::class, 'store']);
@@ -68,3 +69,11 @@ use App\Http\Controllers\API\ClothController;
 |--------------------------------------------------------------------------
 */
 Route::apiResource('cloths', ClothController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Customer API Routes
+|--------------------------------------------------------------------------
+*/
+Route::apiResource('customers', CustomerController::class);
+Route::get('customers-shipment-statuses', [CustomerController::class, 'getShipmentStatuses']);
