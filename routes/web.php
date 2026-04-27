@@ -7,5 +7,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-// Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
