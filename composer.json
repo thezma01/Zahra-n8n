@@ -59,8 +59,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "composer-plugin-api": "^1.1.0",
-            "laravel/installer": "^1.1"
+            "composer-plugin-api": true,
+            "laravel/installer": true
         }
     }
 }
