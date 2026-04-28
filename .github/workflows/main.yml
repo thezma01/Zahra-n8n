@@ -10,6 +10,7 @@ env:
   DB_DATABASE: n8n
   DB_USERNAME: root
   DB_PASSWORD: root
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   tests:
@@ -67,4 +68,4 @@ jobs:
         run: php artisan migrate --force
 
       - name: Run Tests
-        run: php artisan test
+        run: php artisan test --verbose
