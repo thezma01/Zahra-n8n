@@ -116,7 +116,7 @@
         <ul class="navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="#">Services</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">About</a></li>
             <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active btn-contact' : '' }}">Contact</a></li>
         </ul>
     </nav>
