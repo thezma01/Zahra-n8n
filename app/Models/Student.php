@@ -27,7 +27,7 @@ class Student extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'roll_no' => 'integer',
+        'roll_no'    => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

@@ -25,14 +25,14 @@ class StudentController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Students retrieved successfully.',
-                'data' => $students,
-                'count' => $students->count(),
+                'data'    => $students,
+                'count'   => $students->count(),
             ], 200);
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to retrieve students.',
-                'error' => $e->getMessage(),
+                'error'   => $e->getMessage(),
             ], 500);
         }
     }
@@ -51,13 +51,13 @@ class StudentController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Student created successfully.',
-                'data' => $student,
+                'data'    => $student,
             ], 201);
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to create student.',
-                'error' => $e->getMessage(),
+                'error'   => $e->getMessage(),
             ], 500);
         }
     }
@@ -76,19 +76,19 @@ class StudentController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Student retrieved successfully.',
-                'data' => $student,
+                'data'    => $student,
             ], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Student not found.',
-                'error' => "No student found with ID: {$id}",
+                'error'   => "No student found with ID: {$id}",
             ], 404);
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to retrieve student.',
-                'error' => $e->getMessage(),
+                'error'   => $e->getMessage(),
             ], 500);
         }
     }
@@ -109,19 +109,19 @@ class StudentController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Student updated successfully.',
-                'data' => $student->fresh(),
+                'data'    => $student->fresh(),
             ], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Student not found.',
-                'error' => "No student found with ID: {$id}",
+                'error'   => "No student found with ID: {$id}",
             ], 404);
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to update student.',
-                'error' => $e->getMessage(),
+                'error'   => $e->getMessage(),
             ], 500);
         }
     }
@@ -135,26 +135,26 @@ class StudentController extends Controller
     public function destroy(int $id): JsonResponse
     {
         try {
-            $student = Student::findOrFail($id);
+            $student     = Student::findOrFail($id);
             $studentData = $student->toArray();
             $student->delete();
 
             return response()->json([
                 'success' => true,
                 'message' => 'Student deleted successfully.',
-                'data' => $studentData,
+                'data'    => $studentData,
             ], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Student not found.',
-                'error' => "No student found with ID: {$id}",
+                'error'   => "No student found with ID: {$id}",
             ], 404);
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to delete student.',
-                'error' => $e->getMessage(),
+                'error'   => $e->getMessage(),
             ], 500);
         }
     }
