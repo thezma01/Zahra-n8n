@@ -1,0 +1,92 @@
+:root {
+    --auth-primary: #7886C7;
+    --auth-secondary: #A9B5DF;
+    --auth-dark: #2D336B;
+    --auth-light: #FFF2F2;
+}
+
+body {
+    background: linear-gradient(135deg, var(--auth-light) 0%, var(--auth-secondary) 100%);
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.auth-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(45, 51, 107, 0.15);
+}
+
+.auth-header {
+    background: linear-gradient(135deg, var(--auth-dark) 0%, var(--auth-primary) 100%);
+    border-radius: 20px 20px 0 0;
+    padding: 2rem;
+}
+
+.auth-input {
+    border: 2px solid #e8ecf4;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.auth-input:focus {
+    border-color: var(--auth-primary);
+    box-shadow: 0 0 0 4px rgba(120, 134, 199, 0.15);
+    outline: none;
+}
+
+.input-group .auth-input {
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+}
+
+.input-group .toggle-password {
+    border: 2px solid #e8ecf4;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    background: #fff;
+    color: var(--auth-primary);
+    transition: background 0.2s;
+}
+
+.input-group .toggle-password:hover {
+    background: var(--auth-light);
+}
+
+.btn-auth {
+    background: linear-gradient(135deg, var(--auth-primary) 0%, var(--auth-dark) 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(45, 51, 107, 0.3);
+    color: #fff;
+}
+
+.btn-auth:active {
+    transform: translateY(0);
+}
+
+.auth-link {
+    color: var(--auth-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-link:hover {
+    color: var(--auth-dark);
+    text-decoration: underline;
+}
+
+.divider {
+    border-color: #e8ecf4;
+}
