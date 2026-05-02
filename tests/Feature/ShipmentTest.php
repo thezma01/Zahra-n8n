@@ -18,7 +18,7 @@ class ShipmentTest extends TestCase
         return Customer::create([
             'customer_name' => 'John Doe',
             'shipment_status' => 'Pending',
-            'delivery_date' => '2026-05-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ]);
     }
 
@@ -30,7 +30,7 @@ class ShipmentTest extends TestCase
             'order_id' => 1,
             'customer_id' => $customer->id,
             'shipment_status' => 'Pending',
-            'delivery_date' => '2026-05-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ], $overrides));
     }
 
@@ -72,7 +72,7 @@ class ShipmentTest extends TestCase
             'order_id' => 1,
             'customer_id' => $customer->id,
             'shipment_status' => 'Pending',
-            'delivery_date' => '2026-05-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ];
 
         $response = $this->postJson('/api/shipments', $data);
@@ -105,7 +105,7 @@ class ShipmentTest extends TestCase
             'order_id' => 1,
             'customer_id' => $customer->id,
             'shipment_status' => 'InvalidStatus',
-            'delivery_date' => '2026-05-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ]);
 
         $response->assertStatus(422);
@@ -117,7 +117,7 @@ class ShipmentTest extends TestCase
             'order_id' => 1,
             'customer_id' => 99999,
             'shipment_status' => 'Pending',
-            'delivery_date' => '2026-05-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ]);
 
         $response->assertStatus(422);
@@ -164,7 +164,7 @@ class ShipmentTest extends TestCase
             'order_id' => 2,
             'customer_id' => $customer->id,
             'shipment_status' => 'Shipped',
-            'delivery_date' => '2026-06-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ]);
 
         $response->assertStatus(200)
@@ -188,7 +188,7 @@ class ShipmentTest extends TestCase
             'order_id' => 1,
             'customer_id' => $customer->id,
             'shipment_status' => 'In Transit',
-            'delivery_date' => '2026-06-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ]);
 
         $response->assertStatus(200);
@@ -207,7 +207,7 @@ class ShipmentTest extends TestCase
             'order_id' => 1,
             'customer_id' => $customer->id,
             'shipment_status' => 'Shipped',
-            'delivery_date' => '2026-06-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ]);
 
         $response->assertStatus(404);
@@ -222,7 +222,7 @@ class ShipmentTest extends TestCase
             'order_id' => 1,
             'customer_id' => $customer->id,
             'shipment_status' => 'InvalidStatus',
-            'delivery_date' => '2026-06-01',
+            'delivery_date' => now()->addDays(7)->format('Y-m-d'),
         ]);
 
         $response->assertStatus(422);
