@@ -1,0 +1,71 @@
+:root {
+    --primary:   #826F66;
+    --secondary: #C69B7B;
+    --accent:    #F7CCAC;
+    --dark:      #3A3845;
+}
+
+body {
+    background-color: #faf8f6;
+    color: var(--dark);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.section-header .badge-pill {
+    background-color: var(--accent);
+    color: var(--dark);
+    font-size: .75rem;
+    letter-spacing: .08em;
+    padding: .35em .9em;
+    border-radius: 50px;
+}
+
+.section-header h2 {
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 2.2rem;
+}
+
+.section-header p {
+    color: var(--primary);
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    border: none;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(130,111,102,.10);
+    transition: transform .28s ease, box-shadow .28s ease;
+    height: 100%;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 32px rgba(130,111,102,.22);
+}
+
+.avatar {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+}
+
+.stars i { color: var(--secondary); font-size: .95rem; }
+
+.card-text { color: #6b6172; font-size: .93rem; line-height: 1.65; }
+
+.client-name { color: var(--dark); font-weight: 700; font-size: 1rem; }
+
+.client-position { color: var(--primary); font-size: .82rem; }
+
+.quote-icon { color: var(--accent); font-size: 1.8rem; line-height: 1; }
+
+.divider-line {
+    width: 56px; height: 3px;
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+    border-radius: 4px;
+    margin: .6rem auto 0;
+}
