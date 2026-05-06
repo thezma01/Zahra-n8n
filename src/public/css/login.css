@@ -1,0 +1,178 @@
+/* ── Brand Variables ─────────────────────────────────────────────────────── */
+:root {
+  --pos-primary:       #16a34a;
+  --pos-primary-dark:  #15803d;
+  --pos-primary-light: #dcfce7;
+  --pos-bg:            #f0fdf4;
+  --pos-surface:       #ffffff;
+  --pos-text:          #1a1a1a;
+  --pos-muted:         #6b7280;
+  --pos-border:        #e5e7eb;
+  --pos-radius:        14px;
+  --pos-shadow:        0 4px 24px rgba(0,0,0,0.09);
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+body { background: var(--pos-bg); font-family: 'Inter', system-ui, sans-serif; }
+
+.screen { min-height: 100vh; }
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.pos-header {
+  background: var(--pos-primary);
+  color: #fff;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.pos-header .logo-icon {
+  width: 42px; height: 42px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.pos-header h1 { font-size: 1.35rem; font-weight: 700; margin: 0; }
+.pos-header .clock { margin-left: auto; font-size: 1.1rem; font-weight: 600; opacity: .9; }
+
+/* ── User Grid ───────────────────────────────────────────────────────────── */
+.user-card {
+  background: var(--pos-surface);
+  border: 2px solid var(--pos-border);
+  border-radius: var(--pos-radius);
+  padding: 24px 12px 18px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.user-card:hover, .user-card:focus-visible {
+  border-color: var(--pos-primary);
+  box-shadow: 0 6px 20px rgba(22,163,74,.18);
+  transform: translateY(-3px);
+  outline: none;
+}
+.user-avatar {
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  background: var(--pos-primary-light);
+  color: var(--pos-primary);
+  font-size: 1.6rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  border: 3px solid var(--pos-primary-light);
+}
+.avatar-img { width: 100%; height: 100%; object-fit: cover; }
+.user-name { font-weight: 600; font-size: 1rem; color: var(--pos-text); text-align: center; }
+
+/* ── Role Badge ──────────────────────────────────────────────────────────── */
+.role-badge {
+  font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase; padding: 3px 10px;
+  border-radius: 20px;
+}
+.role-manager  { background: #fef9c3; color: #854d0e; }
+.role-cashier  { background: var(--pos-primary-light); color: #166534; }
+
+/* ── PIN Screen ──────────────────────────────────────────────────────────── */
+.pin-card {
+  background: var(--pos-surface);
+  border-radius: 20px;
+  box-shadow: var(--pos-shadow);
+  padding: 36px 32px 32px;
+  max-width: 400px; width: 100%;
+}
+.pin-dots {
+  display: flex; gap: 14px;
+  justify-content: center; margin: 20px 0 8px;
+}
+.pin-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid var(--pos-primary);
+  background: transparent;
+  transition: background .15s, transform .12s;
+}
+.pin-dot.filled {
+  background: var(--pos-primary);
+  transform: scale(1.15);
+}
+
+/* ── Keypad ──────────────────────────────────────────────────────────────── */
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+.keypad-btn {
+  background: var(--pos-surface);
+  border: 2px solid var(--pos-border);
+  border-radius: 12px;
+  font-size: 1.6rem; font-weight: 600;
+  color: var(--pos-text);
+  padding: 18px 0;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .1s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.keypad-btn:hover:not(:disabled) { background: var(--pos-primary-light); border-color: var(--pos-primary); }
+.keypad-btn:active:not(:disabled) { transform: scale(.93); }
+.keypad-btn:disabled { opacity: .5; cursor: not-allowed; }
+.keypad-btn.keypad-action { font-size: 1.1rem; color: var(--pos-muted); }
+.keypad-btn.keypad-submit {
+  background: var(--pos-primary); color: #fff;
+  border-color: var(--pos-primary); font-size: 1rem;
+}
+.keypad-btn.keypad-submit:hover:not(:disabled) { background: var(--pos-primary-dark); }
+
+/* ── Forgot PIN ──────────────────────────────────────────────────────────── */
+.forgot-card {
+  background: var(--pos-surface);
+  border-radius: 20px;
+  box-shadow: var(--pos-shadow);
+  padding: 36px 32px 32px;
+  max-width: 420px; width: 100%;
+}
+.otp-input-field {
+  letter-spacing: .4em; font-size: 1.5rem; text-align: center;
+  font-weight: 700; border: 2px solid var(--pos-border);
+  border-radius: 10px; padding: 12px;
+}
+.otp-input-field:focus { border-color: var(--pos-primary); outline: none; box-shadow: 0 0 0 3px rgba(22,163,74,.15); }
+.pin-input-field {
+  font-size: 1.2rem; text-align: center; letter-spacing: .3em;
+  border: 2px solid var(--pos-border); border-radius: 10px; padding: 12px;
+}
+.pin-input-field:focus { border-color: var(--pos-primary); outline: none; box-shadow: 0 0 0 3px rgba(22,163,74,.15); }
+
+/* ── Done Step ───────────────────────────────────────────────────────────── */
+.success-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--pos-primary-light);
+  color: var(--pos-primary);
+  font-size: 2.2rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+
+/* ── Loading Screen ──────────────────────────────────────────────────────── */
+.loading-spinner { color: var(--pos-primary); }
+
+/* ── Primary Button ──────────────────────────────────────────────────────── */
+.btn-pos-primary {
+  background: var(--pos-primary); color: #fff;
+  border: none; border-radius: 10px;
+  padding: 13px 24px; font-size: 1rem; font-weight: 600;
+  width: 100%; cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.btn-pos-primary:hover:not(:disabled) { background: var(--pos-primary-dark); }
+.btn-pos-primary:active:not(:disabled) { transform: scale(.97); }
+.btn-pos-primary:disabled { opacity: .6; cursor: not-allowed; }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .pin-card, .forgot-card { padding: 28px 18px 24px; border-radius: 14px; }
+  .keypad-btn { font-size: 1.4rem; padding: 16px 0; }
+  .user-avatar { width: 58px; height: 58px; font-size: 1.3rem; }
+}
