@@ -1,61 +1,47 @@
 'use strict';
 
-const bcrypt = require('bcryptjs');
 const authConfig = require('../config/auth.config');
 
 class PinService {
   /**
-   * Validate PIN format based on configured length.
+   * Validate PIN format against configured length.
    * @param {string|number} pin
-   * @returns {{ valid: boolean, message?: string }}
+   * @returns {{ valid: boolean, message: string }}
    */
   static validate(pin) {
     const pinStr = String(pin).trim();
-    const { length } = authConfig.pin;
+    const expectedLength = authConfig.pin.length;
+
+    if (!pinStr) {
+      return { valid: false, message: 'PIN is required.' };
+    }
 
     if (!/^\d+$/.test(pinStr)) {
       return { valid: false, message: 'PIN must contain digits only.' };
     }
-    if (pinStr.length !== length) {
+
+    if (pinStr.length !== expectedLength) {
       return {
         valid: false,
-        message: `PIN must be exactly ${length} digits.`,
+        message: `PIN must be exactly ${expectedLength} digit(s).`,
       };
     }
-    return { valid: true };
+
+    return { valid: true, message: 'PIN is valid.' };
   }
 
   /**
-   * Hash a plain PIN.
-   * @param {string|number} pin
-   * @returns {Promise<string>}
-   */
-  static async hash(pin) {
-    return bcrypt.hash(String(pin), 12);
-  }
-
-  /**
-   * Compare a plain PIN with its hash.
-   * @param {string|number} pin
-   * @param {string} hash
-   * @returns {Promise<boolean>}
-   */
-  static async verify(pin, hash) {
-    return bcrypt.compare(String(pin), hash);
-  }
-
-  /**
-   * Determine if a user account is currently locked.
+   * Check if a user account is currently locked.
    * @param {import('../models/User')} user
    * @returns {boolean}
    */
   static isLocked(user) {
     if (!user.lockedUntil) return false;
-    return new Date() < new Date(user.lockedUntil);
+    return new Date(user.lockedUntil) > new Date();
   }
 
   /**
-   * Get remaining lockout seconds.
+   * Returns remaining lockout seconds (0 if not locked).
    * @param {import('../models/User')} user
    * @returns {number}
    */
@@ -66,18 +52,18 @@ class PinService {
   }
 
   /**
-   * Process a failed PIN attempt — increments counter and locks if needed.
+   * Handle a failed PIN attempt — increment counter, lock if threshold reached.
    * @param {import('../models/User')} user
    * @returns {Promise<{ locked: boolean, attemptsLeft: number }>}
    */
   static async handleFailedAttempt(user) {
-    const { maxAttempts, lockoutDurationMinutes } = authConfig.pin;
     user.failedPinAttempts = (user.failedPinAttempts || 0) + 1;
 
+    const maxAttempts = authConfig.pin.maxAttempts;
+
     if (user.failedPinAttempts >= maxAttempts) {
-      const lockUntil = new Date();
-      lockUntil.setMinutes(lockUntil.getMinutes() + lockoutDurationMinutes);
-      user.lockedUntil = lockUntil;
+      const lockoutMs = authConfig.pin.lockoutDurationMinutes * 60 * 1000;
+      user.lockedUntil = new Date(Date.now() + lockoutMs);
       await user.save();
       return { locked: true, attemptsLeft: 0 };
     }
@@ -90,7 +76,7 @@ class PinService {
   }
 
   /**
-   * Reset failed attempts after successful login.
+   * Reset failed attempt counter and clear lockout after successful login.
    * @param {import('../models/User')} user
    * @returns {Promise<void>}
    */
