@@ -1,70 +1,75 @@
 'use strict';
 
-const mongoose = require('mongoose');
+const { db } = require('../config/database');
 
-const permissionSchema = new mongoose.Schema(
-  {
-    key: {
-      type: String,
-      required: [true, 'Permission key is required'],
-      unique: true,
-      trim: true,
-      lowercase: true,
-      match: [/^[a-z_]+$/, 'Permission key must contain only lowercase letters and underscores'],
-    },
-
-    label: {
-      type: String,
-      required: [true, 'Permission label is required'],
-      trim: true,
-      maxlength: [100, 'Label must not exceed 100 characters'],
-    },
-
-    description: {
-      type: String,
-      trim: true,
-      maxlength: [500, 'Description must not exceed 500 characters'],
-      default: '',
-    },
-
-    category: {
-      type: String,
-      trim: true,
-      enum: ['orders', 'reports', 'admin', 'payments', 'auth'],
-      default: 'orders',
-    },
-
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  {
-    timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
+class Permission {
+  static get TABLE() {
+    return 'permissions';
   }
-);
 
-permissionSchema.index({ key: 1 }, { unique: true });
-permissionSchema.index({ category: 1 });
-permissionSchema.index({ isActive: 1 });
+  /**
+   * Find all active permissions
+   */
+  static async findAll() {
+    return db(this.TABLE)
+      .where({ is_active: true })
+      .orderBy('category')
+      .orderBy('display_name');
+  }
 
-permissionSchema.statics.getActivePermissions = function () {
-  return this.find({ isActive: true }).sort({ category: 1, label: 1 });
-};
+  /**
+   * Find permissions by category
+   */
+  static async findByCategory(category) {
+    return db(this.TABLE)
+      .where({ category, is_active: true })
+      .orderBy('display_name');
+  }
 
-permissionSchema.statics.seedDefaultPermissions = async function (defaultPermissions) {
-  const ops = defaultPermissions.map((perm) => ({
-    updateOne: {
-      filter: { key: perm.key },
-      update: { $setOnInsert: perm },
-      upsert: true,
-    },
-  }));
-  return this.bulkWrite(ops);
-};
+  /**
+   * Find a permission by name
+   */
+  static async findByName(name) {
+    return db(this.TABLE).where({ name, is_active: true }).first();
+  }
 
-const Permission = mongoose.model('Permission', permissionSchema);
+  /**
+   * Find permission by ID
+   */
+  static async findById(id) {
+    return db(this.TABLE).where({ id }).first();
+  }
+
+  /**
+   * Create a permission
+   */
+  static async create(data) {
+    const { v4: uuidv4 } = require('uuid');
+    const [record] = await db(this.TABLE)
+      .insert({ id: uuidv4(), ...data })
+      .returning('*');
+    return record;
+  }
+
+  /**
+   * Update a permission
+   */
+  static async update(id, data) {
+    const [record] = await db(this.TABLE)
+      .where({ id })
+      .update({ ...data, updated_at: db.fn.now() })
+      .returning('*');
+    return record;
+  }
+
+  /**
+   * Toggle permission active status
+   */
+  static async toggle(id) {
+    const perm = await this.findById(id);
+    if (!perm) throw new Error('Permission not found');
+    return this.update(id, { is_active: !perm.is_active });
+  }
+}
 
 module.exports = Permission;

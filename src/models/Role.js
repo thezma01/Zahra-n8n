@@ -1,93 +1,94 @@
 'use strict';
 
-const mongoose = require('mongoose');
+const { db } = require('../config/database');
 
-const roleSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: [true, 'Role name is required'],
-      unique: true,
-      trim: true,
-      lowercase: true,
-      enum: {
-        values: ['manager', 'cashier'],
-        message: 'Role must be either manager or cashier',
-      },
-    },
-
-    label: {
-      type: String,
-      required: [true, 'Role label is required'],
-      trim: true,
-      maxlength: [50, 'Label must not exceed 50 characters'],
-    },
-
-    permissions: [
-      {
-        type: String,
-        trim: true,
-        lowercase: true,
-      },
-    ],
-
-    badgeColor: {
-      type: String,
-      default: '#6b7280',
-      trim: true,
-    },
-
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-
-    description: {
-      type: String,
-      trim: true,
-      maxlength: [300, 'Description must not exceed 300 characters'],
-      default: '',
-    },
-  },
-  {
-    timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
+class Role {
+  static get TABLE() {
+    return 'roles';
   }
-);
 
-roleSchema.index({ name: 1 }, { unique: true });
-roleSchema.index({ isActive: 1 });
-
-roleSchema.methods.hasPermission = function (permissionKey) {
-  return this.permissions.includes(permissionKey.toLowerCase());
-};
-
-roleSchema.methods.addPermission = function (permissionKey) {
-  const key = permissionKey.toLowerCase();
-  if (!this.permissions.includes(key)) {
-    this.permissions.push(key);
+  /**
+   * Find all active roles
+   */
+  static async findAll() {
+    return db(this.TABLE).where({ is_active: true }).orderBy('name');
   }
-  return this;
-};
 
-roleSchema.methods.removePermission = function (permissionKey) {
-  const key = permissionKey.toLowerCase();
-  this.permissions = this.permissions.filter((p) => p !== key);
-  return this;
-};
+  /**
+   * Find role by ID with permissions
+   */
+  static async findById(id) {
+    const role = await db(this.TABLE).where({ id }).first();
+    if (!role) return null;
+    role.permissions = await this.getPermissions(id);
+    return role;
+  }
 
-roleSchema.statics.seedDefaultRoles = async function (defaultRoles) {
-  const ops = defaultRoles.map((role) => ({
-    updateOne: {
-      filter: { name: role.name },
-      update: { $setOnInsert: role },
-      upsert: true,
-    },
-  }));
-  return this.bulkWrite(ops);
-};
+  /**
+   * Find role by name
+   */
+  static async findByName(name) {
+    const role = await db(this.TABLE).where({ name, is_active: true }).first();
+    if (!role) return null;
+    role.permissions = await this.getPermissions(role.id);
+    return role;
+  }
 
-const Role = mongoose.model('Role', roleSchema);
+  /**
+   * Get all permissions for a role
+   */
+  static async getPermissions(roleId) {
+    return db('permissions')
+      .join('role_permissions', 'permissions.id', 'role_permissions.permission_id')
+      .where('role_permissions.role_id', roleId)
+      .where('permissions.is_active', true)
+      .select('permissions.*');
+  }
+
+  /**
+   * Get permission names array for a role
+   */
+  static async getPermissionNames(roleId) {
+    const perms = await this.getPermissions(roleId);
+    return perms.map((p) => p.name);
+  }
+
+  /**
+   * Create a role
+   */
+  static async create(data) {
+    const { v4: uuidv4 } = require('uuid');
+    const [record] = await db(this.TABLE)
+      .insert({ id: uuidv4(), ...data })
+      .returning('*');
+    return record;
+  }
+
+  /**
+   * Update a role
+   */
+  static async update(id, data) {
+    const [record] = await db(this.TABLE)
+      .where({ id })
+      .update({ ...data, updated_at: db.fn.now() })
+      .returning('*');
+    return record;
+  }
+
+  /**
+   * Assign permissions to role (replaces existing)
+   */
+  static async syncPermissions(roleId, permissionIds) {
+    const { v4: uuidv4 } = require('uuid');
+    await db('role_permissions').where({ role_id: roleId }).delete();
+    if (!permissionIds || permissionIds.length === 0) return;
+    const rows = permissionIds.map((pid) => ({
+      id: uuidv4(),
+      role_id: roleId,
+      permission_id: pid,
+    }));
+    await db('role_permissions').insert(rows);
+  }
+}
 
 module.exports = Role;
