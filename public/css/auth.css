@@ -1,0 +1,629 @@
+/* ============================================================
+   POS AUTH — Custom CSS (Bootstrap-first, minimal overrides)
+   ============================================================ */
+
+:root {
+  --pos-primary: #16a34a;
+  --pos-primary-hover: #15803d;
+  --pos-primary-light: #f0fdf4;
+  --pos-primary-border: #bbf7d0;
+  --pos-dot-size: 18px;
+}
+
+/* ── Page Shell ─────────────────────────────────────────── */
+.auth-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #f0fdf4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(22, 163, 74, 0.12), 0 2px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.auth-card-wide {
+  max-width: 560px;
+}
+
+/* ── Header Bar ─────────────────────────────────────────── */
+.auth-header {
+  background: var(--pos-primary);
+  padding: 28px 32px 24px;
+  text-align: center;
+}
+
+.auth-header .app-name {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px;
+}
+
+.auth-header .app-subtitle {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.auth-logo {
+  width: 52px;
+  height: 52px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 1.6rem;
+}
+
+/* ── Body ───────────────────────────────────────────────── */
+.auth-body {
+  padding: 28px 32px 32px;
+}
+
+/* ── User Grid ──────────────────────────────────────────── */
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 10px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  background: #fff;
+  position: relative;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.user-card:hover {
+  border-color: var(--pos-primary);
+  background: var(--pos-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.15);
+}
+
+.user-card.selected {
+  border-color: var(--pos-primary);
+  background: var(--pos-primary-light);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+}
+
+.user-card.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 0.7rem;
+  color: var(--pos-primary);
+  font-weight: 700;
+}
+
+/* ── Avatar ─────────────────────────────────────────────── */
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+  background: var(--pos-primary);
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-sm {
+  width: 38px;
+  height: 38px;
+  font-size: 0.85rem;
+}
+
+.avatar-lg {
+  width: 64px;
+  height: 64px;
+  font-size: 1.3rem;
+  margin: 0 auto 10px;
+}
+
+/* ── Role Badge ─────────────────────────────────────────── */
+.role-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  margin-top: 2px;
+}
+
+.role-badge.manager {
+  background: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fde047;
+}
+
+.role-badge.cashier {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+}
+
+.user-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+/* ── Divider ────────────────────────────────────────────── */
+.auth-divider {
+  height: 1px;
+  background: #f3f4f6;
+  margin: 20px 0;
+}
+
+/* ── PIN Step ───────────────────────────────────────────── */
+.pin-step {
+  display: none;
+}
+
+.pin-step.active {
+  display: block;
+}
+
+/* ── Selected User Bar ──────────────────────────────────── */
+.selected-user-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--pos-primary-light);
+  border: 1px solid var(--pos-primary-border);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.selected-user-bar:hover {
+  background: #dcfce7;
+}
+
+.selected-user-info {
+  flex: 1;
+}
+
+.selected-user-info .name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.selected-user-info .change-hint {
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+/* ── PIN Dots ───────────────────────────────────────────── */
+.pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 4px 0 20px;
+}
+
+.pin-dot {
+  width: var(--pos-dot-size);
+  height: var(--pos-dot-size);
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  background: transparent;
+  transition: all 0.15s ease;
+}
+
+.pin-dot.filled {
+  background: var(--pos-primary);
+  border-color: var(--pos-primary);
+  transform: scale(1.1);
+}
+
+.pin-dot.error {
+  border-color: #ef4444;
+  background: #ef4444;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+/* ── Keypad ─────────────────────────────────────────────── */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.key-btn {
+  aspect-ratio: 1;
+  min-height: 64px;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.key-btn:hover {
+  background: var(--pos-primary-light);
+  border-color: var(--pos-primary);
+  color: var(--pos-primary);
+}
+
+.key-btn:active {
+  transform: scale(0.93);
+  background: #dcfce7;
+}
+
+.key-btn.key-del {
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+.key-btn.key-del:hover {
+  color: #ef4444;
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.key-btn.key-empty {
+  border: none;
+  background: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Primary Button ─────────────────────────────────────── */
+.btn-pos-primary {
+  background: var(--pos-primary);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 24px;
+  border-radius: 12px;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.3px;
+  touch-action: manipulation;
+}
+
+.btn-pos-primary:hover {
+  background: var(--pos-primary-hover);
+}
+
+.btn-pos-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-pos-primary:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Error Alert ────────────────────────────────────────── */
+.auth-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: none;
+  text-align: center;
+}
+
+.auth-error.show {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+.auth-success {
+  background: var(--pos-primary-light);
+  border: 1px solid var(--pos-primary-border);
+  color: #166534;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: none;
+  text-align: center;
+}
+
+.auth-success.show {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── OTP Input ──────────────────────────────────────────── */
+.otp-input-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.otp-box {
+  width: 48px;
+  height: 56px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1f2937;
+  outline: none;
+  transition: border-color 0.15s;
+  background: #fff;
+}
+
+.otp-box:focus {
+  border-color: var(--pos-primary);
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+}
+
+.otp-box.filled {
+  border-color: var(--pos-primary);
+  background: var(--pos-primary-light);
+}
+
+.otp-box.error {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+/* ── Back Link ──────────────────────────────────────────── */
+.auth-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #6b7280;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.auth-back-link:hover {
+  color: var(--pos-primary);
+}
+
+/* ── Step Indicator ─────────────────────────────────────── */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d5db;
+  transition: all 0.2s;
+}
+
+.step-dot.active {
+  background: var(--pos-primary);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.step-dot.done {
+  background: var(--pos-primary);
+}
+
+/* ── Success Screen ─────────────────────────────────────── */
+.success-icon {
+  width: 72px;
+  height: 72px;
+  background: var(--pos-primary-light);
+  border: 3px solid var(--pos-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 2rem;
+  color: var(--pos-primary);
+}
+
+/* ── Forgot PIN link ────────────────────────────────────── */
+.forgot-pin-link {
+  color: var(--pos-primary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  transition: color 0.15s;
+}
+
+.forgot-pin-link:hover {
+  color: var(--pos-primary-hover);
+  text-decoration: underline;
+}
+
+/* ── Loading Spinner ────────────────────────────────────── */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* ── Resend Timer ───────────────────────────────────────── */
+.resend-timer {
+  font-size: 0.82rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.resend-timer a {
+  color: var(--pos-primary);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.resend-timer a:hover {
+  text-decoration: underline;
+}
+
+/* ── Lockout Banner ─────────────────────────────────────── */
+.lockout-banner {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #c2410c;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  margin-bottom: 14px;
+  text-align: center;
+  display: none;
+}
+
+.lockout-banner.show {
+  display: block;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .auth-card {
+    border-radius: 16px;
+  }
+
+  .auth-body {
+    padding: 20px 18px 24px;
+  }
+
+  .auth-header {
+    padding: 22px 18px 18px;
+  }
+
+  .key-btn {
+    min-height: 58px;
+    font-size: 1.35rem;
+  }
+
+  .user-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 8px;
+  }
+
+  .otp-box {
+    width: 40px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .user-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .keypad {
+    gap: 8px;
+  }
+
+  .key-btn {
+    min-height: 52px;
+    border-radius: 10px;
+  }
+}
