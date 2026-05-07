@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.login-container {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-list {
+  margin-bottom: 20px;
+}
+
+.user-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-list li:last-child {
+  border-bottom: none;
+}
+
+.pin-login {
+  margin-top: 20px;
+}
+
+#pin {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 24px;
+  border: 1px solid #ccc;
+}
+
+.pin-pad {
+  margin-top: 20px;
+}
+
+.num-button {
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.num-button:hover {
+  background-color: #3e8e41;
+}
+
+#error-message {
+  color: #f00;
+  font-size: 18px;
+  margin-top: 10px;
+}
