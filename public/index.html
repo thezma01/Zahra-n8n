@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>POS Login</title>
+</head>
+<body>
+  <div class="login-container">
+    <h1>POS Login</h1>
+    <div class="user-list">
+      <ul id="user-list"></ul>
+    </div>
+    <div class="pin-login">
+      <input type="number" id="pin" maxlength="5" />
+      <div class="pin-pad">
+        <button class="num-button" data-num="1">1</button>
+        <button class="num-button" data-num="2">2</button>
+        <button class="num-button" data-num="3">3</button>
+        <button class="num-button" data-num="4">4</button>
+        <button class="num-button" data-num="5">5</button>
+        <button class="num-button" data-num="6">6</button>
+        <button class="num-button" data-num="7">7</button>
+        <button class="num-button" data-num="8">8</button>
+        <button class="num-button" data-num="9">9</button>
+        <button class="num-button" data-num="0">0</button>
+      </div>
+      <button id="forgot-pin">Forgot PIN?</button>
+    </div>
+    <div class="error-message" id="error-message"></div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
