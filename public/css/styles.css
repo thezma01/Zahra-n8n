@@ -1,0 +1,44 @@
+body {
+    background-color: #f0f0f0;
+}
+
+.card {
+    margin-top: 20px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.forgot-pin {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.forgot-pin:hover {
+    color: #3e8e41;
+}
