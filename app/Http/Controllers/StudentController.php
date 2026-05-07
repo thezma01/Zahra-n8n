@@ -23,40 +23,24 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
-    public function show($id)
+    public function show(Student $student)
     {
-        $student = Student::find($id);
-        if (!$student) {
-            return redirect()->route('students.index');
-        }
         return view('students.show', compact('student'));
     }
 
-    public function edit($id)
+    public function edit(Student $student)
     {
-        $student = Student::find($id);
-        if (!$student) {
-            return redirect()->route('students.index');
-        }
         return view('students.edit', compact('student'));
     }
 
-    public function update(StudentRequest $request, $id)
+    public function update(StudentRequest $request, Student $student)
     {
-        $student = Student::find($id);
-        if (!$student) {
-            return redirect()->route('students.index');
-        }
         $student->update($request->validated());
         return redirect()->route('students.index');
     }
 
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        $student = Student::find($id);
-        if (!$student) {
-            return redirect()->route('students.index');
-        }
         $student->delete();
         return redirect()->route('students.index');
     }

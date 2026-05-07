@@ -19,31 +19,19 @@ class StudentController extends Controller
         return response()->json($student, 201);
     }
 
-    public function show($id)
+    public function show(Student $student)
     {
-        $student = Student::find($id);
-        if (!$student) {
-            return response()->json(['message' => 'Student not found'], 404);
-        }
         return response()->json($student);
     }
 
-    public function update(StudentRequest $request, $id)
+    public function update(StudentRequest $request, Student $student)
     {
-        $student = Student::find($id);
-        if (!$student) {
-            return response()->json(['message' => 'Student not found'], 404);
-        }
         $student->update($request->validated());
         return response()->json($student);
     }
 
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        $student = Student::find($id);
-        if (!$student) {
-            return response()->json(['message' => 'Student not found'], 404);
-        }
         $student->delete();
         return response()->json(['message' => 'Student deleted successfully']);
     }

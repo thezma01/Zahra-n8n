@@ -1,6 +1,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StudentRequest extends FormRequest
 {
@@ -11,9 +12,16 @@ class StudentRequest extends FormRequest
 
     public function rules()
     {
+        $student = $this->route('student');
+        $studentId = is_object($student) ? $student->id : $student;
+
         return [
             'name' => 'required|string',
-            'email' => 'required|email|unique:students',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('students')->ignore($studentId),
+            ],
             'phone' => 'required|string',
         ];
     }
