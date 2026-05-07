@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot PIN</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Forgot PIN</h2>
+                        <form method="post" action="/auth/forgot-pin">
+                            <div class="form-group">
+                                <label for="id">ID</label>
+                                <input type="text" id="id" name="id" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send OTP</button>
+                        </form>
+                        {{#if message}}
+                            <div class="alert alert-success">{{message}}</div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
