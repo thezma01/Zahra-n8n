@@ -1,0 +1,15 @@
+{
+  "name": "pos-system",
+  "version": "1.0.0",
+  "description": "A secure and simple POS system with authentication and user management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.2.10",
+    "bcrypt": "^5.0.1",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
