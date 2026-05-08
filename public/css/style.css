@@ -1,0 +1,112 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.bi-star-fill {
+    color: #ffc107;
+}
+
+.text-secondary {
+    color: #666;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.shadow-sm {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-3 {
+    border-radius: 12px;
+}
+
+.col-md-4 {
+    flex: 0 0 auto;
+    width: 33.3333333333%;
+}
+
+.col-sm-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.h1, h1 {
+    font-size: 2.5rem;
+}
+
+.h5, h5 {
+    font-size: 1.25rem;
+}
+
+.p, p {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
