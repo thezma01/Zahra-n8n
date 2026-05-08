@@ -1,0 +1,59 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.login-container {
+  width: 80%;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+  text-align: center;
+}
+
+.user-list {
+  margin-bottom: 20px;
+}
+
+.pin-entry {
+  text-align: center;
+}
+
+#pin {
+  width: 100px;
+  height: 40px;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#submit-pin {
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#error-message {
+  color: #f00;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+#forgot-pin {
+  font-size: 16px;
+  color: #4CAF50;
+  text-decoration: none;
+  margin-top: 10px;
+}
