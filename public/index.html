@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POS System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>Login</h1>
+    <div class="user-list">
+      <!-- User list will be populated here -->
+    </div>
+    <div class="pin-entry">
+      <input type="password" id="pin" maxlength="5">
+      <div class="numeric-keypad">
+        <button class="key" onclick="appendPin('1')">1</button>
+        <button class="key" onclick="appendPin('2')">2</button>
+        <button class="key" onclick="appendPin('3')">3</button>
+        <button class="key" onclick="appendPin('4')">4</button>
+        <button class="key" onclick="appendPin('5')">5</button>
+        <button class="key" onclick="appendPin('6')">6</button>
+        <button class="key" onclick="appendPin('7')">7</button>
+        <button class="key" onclick="appendPin('8')">8</button>
+        <button class="key" onclick="appendPin('9')">9</button>
+        <button class="key" onclick="appendPin('0')">0</button>
+      </div>
+      <p id="error-message"></p>
+      <button id="login-button">Login</button>
+      <button id="forgot-pin-button">Forgot PIN?</button>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
