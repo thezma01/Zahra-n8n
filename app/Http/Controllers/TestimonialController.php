@@ -1,13 +1,11 @@
-// Import the necessary namespace
 namespace App\Http\Controllers;
 
-// Define the TestimonialController class
+use Illuminate\Http\Request;
+
 class TestimonialController extends Controller
 {
-    // Define the index method
     public function index()
     {
-        // Return the customer_feedback view
         return view('customer_feedback');
     }
 }
