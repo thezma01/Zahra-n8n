@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Http\Controllers;
 
 use App\Models\CakeOrder;
@@ -10,16 +12,18 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function createOrder(Request $request)
+    public function store(Request $request)
     {
-        $order = new CakeOrder();
-        $order->cake_name = $request->input('cake_name');
-        $order->description = $request->input('description');
-        $order->price = $request->input('price');
-        $order->flavour = $request->input('flavour');
-        $order->size = $request->input('size');
-        $order->save();
+        $request->validate([
+            'cake_name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'flavour' => 'required',
+            'size' => 'required',
+        ]);
 
-        return redirect()->back()->with('success', 'Order created successfully!');
+        CakeOrder::create($request->all());
+
+        return back()->with('success', 'Order created successfully!');
     }
 }
