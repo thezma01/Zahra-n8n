@@ -10,7 +10,7 @@ class CreateCakeOrdersTable extends Migration
         Schema::create('cake_orders', function (Blueprint $table) {
             $table->id();
             $table->string('cake_name');
-            $table->text('description');
+            $table->string('description');
             $table->decimal('price', 10, 2);
             $table->string('flavour');
             $table->string('size');

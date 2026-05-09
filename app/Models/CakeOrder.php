@@ -6,11 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class CakeOrder extends Model
 {
-    protected $fillable = [
-        'cake_name',
-        'description',
-        'price',
-        'flavour',
-        'size'
-    ];
+    protected $fillable = ['cake_name', 'description', 'price', 'flavour', 'size'];
 }
