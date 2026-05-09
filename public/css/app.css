@@ -1,0 +1,49 @@
+:root {
+    --primary-color: #533B4D;
+    --secondary-color: #F564A9;
+    --tertiary-color: #FAA4BD;
+    --light-peach: #FAE3C6;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--light-peach);
+}
+
+.bg-primary-custom { background-color: var(--primary-color) !important; }
+.bg-secondary-custom { background-color: var(--secondary-color) !important; }
+.text-primary-custom { color: var(--primary-color) !important; }
+.text-secondary-custom { color: var(--secondary-color) !important; }
+
+.btn-primary-custom {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+.btn-primary-custom:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.banner-section {
+    background: url('https://static.vecteezy.com/system/resources/previews/001/447/454/non_2x/bakery-daily-fresh-cake-donut-and-cupcake-banner-vector.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.about-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.footer-section {
+    background-color: var(--primary-color);
+    color: var(--light-peach);
+}
