@@ -9,8 +9,11 @@ class CakeOrder extends Model
 {
     use HasFactory;
 
-    protected $table = 'cake_orders';
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'cake_name',
         'description',
@@ -19,4 +22,3 @@ class CakeOrder extends Model
         'size',
     ];
 }
-

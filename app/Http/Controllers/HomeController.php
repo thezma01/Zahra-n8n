@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CakeOrder;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -16,21 +16,20 @@ class HomeController extends Controller
     }
 
     /**
-     * Store a new cake order in the database.
+     * Store a newly created cake order in storage.
      */
-    public function storeOrder(Request $request)
+    public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'cake_name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'flavour' => 'required|string|max:255',
-            'size' => 'required|string|max:255',
+            'size' => 'required|string|in:Small,Medium,Large',
         ]);
 
-        CakeOrder::create($validatedData);
+        CakeOrder::create($validated);
 
-        return redirect()->back()->with('success', 'Your cake order has been placed successfully!');
+        return redirect('/')->with('success', 'Your cake order has been placed successfully!');
     }
 }
-
