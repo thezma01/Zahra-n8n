@@ -52,7 +52,7 @@
 
     <header id="home" class="banner-section text-center">
         <div class="container">
-            <h1 class="display-3 fw-bold mb-4 text-light-cream"> Zahra Sweeten Your Day with CakeWorld</h1>
+            <h1 class="display-3 fw-bold mb-4 text-light-cream">  Sweeten Your Day with CakeWorld</h1>
             <p class="lead text-light-cream mb-5">Delicious cakes for every occasion, baked with love and the finest ingredients.</p>
             <a href="#order" class="btn btn-lg btn-secondary-pink rounded-pill shadow">Order Your Cake Now!</a>
         </div>
