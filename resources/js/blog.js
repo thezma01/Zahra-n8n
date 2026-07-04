@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Blog page scripts loaded successfully!');
+    console.log('Blog page loaded successfully! Time to read some sweet articles.');
 
-    document.querySelectorAll('.blog-card .btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Clicked to read more on a blog post.');
-        });
-    });
+    // Add any specific JavaScript for the blog page here.
+    // For example, dynamic content loading, animations, etc.
+    // Keeping it minimal for this initial design phase.
 });
