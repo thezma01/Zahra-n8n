@@ -139,7 +139,7 @@
                 <div class="col-md-4">
                     <p class="mb-1"><i class="bi bi-envelope me-2"></i> support@cakeworld.com</p>
                     <p class="mb-1"><i class="bi bi-phone me-2"></i> +92 300 1234567</p>
-                    <p class="mb-0"><i class="bi bi-geo-alt me-2"></i> Karachi, Pakistan</p>
+                    <p class="mb-0"><i class="bi bi-geo-alt me-2"></i> Karachiiii, Pakistan</p>
                 </div>
             </div>
             <div class="social-icons mb-4">
