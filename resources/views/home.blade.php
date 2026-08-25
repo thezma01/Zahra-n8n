@@ -79,7 +79,7 @@
 
     <section id="order" class="py-5 bg-light-cream">
         <div class="container">
-            <h2 class="text-center display-5 fw-bold text-primary-dark mb-5">Place Your Cake Order</h2>
+            <h2 class="text-center display-5 fw-bold text-primary-dark mb-5">Place Your Cake Orderrr</h2>
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
                     <div class="card shadow p-4 rounded-3 border-0">
