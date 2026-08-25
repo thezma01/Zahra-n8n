@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <h2 class="display-5 fw-bold text-primary-dark mb-4">About Our Bakery</h2>
+                    <h2 class="display-5 fw-bold text-primary-dark mb-4">About Our Bakeryyy</h2>
                     <p class="lead text-primary-dark mb-4">
                         At CakeWorld, we believe every celebration deserves a centerpiece.
                         Our journey began with a passion for baking and a commitment to quality.
