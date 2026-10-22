@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cake_orders', function (Blueprint $table) {
-            $table->id();
-            $table->string('cake_name');
-            $table->text('description');
-            $table->decimal('price', 8, 2);
-            $table->string('flavour');
-            $table->string('size');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('cake_orders')) {
+            Schema::create('cake_orders', function (Blueprint $table) {
+                $table->id();
+                $table->string('cake_name');
+                $table->text('description');
+                $table->decimal('price', 8, 2);
+                $table->string('flavour');
+                $table->string('size');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,4 +32,3 @@ return new class extends Migration
         Schema::dropIfExists('cake_orders');
     }
 };
-
